@@ -6,4 +6,5 @@ Counter-Strike: Global Offensive - External Cheat
 ## BunnnyHop (Toggle C),
 ## AntiFlash (Toggle J),
 ## ThirdPerson (Toggle H, DISABLED)
+## Fov (Disabled)
 ## Trigger (Press X)
