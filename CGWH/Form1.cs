@@ -30,24 +30,28 @@ namespace CGWH
 
 
 
-            if (!Cheat.TryCheckValidVersion())
+            if (!Cheat.TryCheckValidVersion(out string content))
             {
-                Status.Text = "Version is not valid!";
+                InformationText.Text = "Version is not valid!";
 
-                Status.ForeColor = Color.Red;
+                InformationText.ForeColor = Color.Red;
+
+                MessageBox.Show(content, "Game version is not valid!", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
 
             if (!Cheat.TryFindProcess())
             {
-                Status.Text = "Can't found CS:GO Process!";
+                InformationText.Text = "Can't found CS:GO Process!";
 
-                Status.ForeColor = Color.Red;
+                InformationText.ForeColor = Color.Red;
+
+                MessageBox.Show("Please start game!", "CSGO Not found", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
 
-            Status.Text = "All right, let`s go play! =)";
-            Status.ForeColor = Color.Green;
+            InformationText.Text = "Cheat loaded to CS:GO";
+            InformationText.ForeColor = Color.Green;
 
             Hook = new GlobalKeyboardHook();
 

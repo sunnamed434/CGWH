@@ -54,7 +54,7 @@ namespace CGWH.Core
 
 
 
-        internal static bool TryCheckValidVersion()
+        internal static bool TryCheckValidVersion(out string content)
         {
             string steamPath = Registry.GetValue("HKEY_LOCAL_MACHINE\\SOFTWARE\\Wow6432Node\\Valve\\Steam", "InstallPath", null).ToString();
 
@@ -63,9 +63,12 @@ namespace CGWH.Core
             Utilities.Debug.Log(">> IsGetProcess()");
             Utilities.Debug.Log($"[DEBUG:1] {infPath}");
 
+            content = string.Empty;
+
             if (File.Exists(infPath))
             {
                 string infText = File.ReadAllText(infPath);
+                content = infText;
                 if (infText.Contains(string.Concat(Information.VERSION_DATE_TITLE, Information.VERSION_DATE)) && infText.Contains(string.Concat(Information.VERSION_TIME_TITLE, Information.VERSION_TIME)))
                     return true;
             }
