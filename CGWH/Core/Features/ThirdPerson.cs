@@ -1,6 +1,6 @@
-﻿using CGWH.Core.Attributes;
-using CGWH.Core.Handlers;
-using System.Windows.Forms;
+﻿using CGWH.Core.Handlers;
+using CGWH.Core.Input;
+using System.Windows.Input;
 
 namespace CGWH.Core.Functions
 {
@@ -17,16 +17,16 @@ namespace CGWH.Core.Functions
 
 
 
-        protected override void OnEnable() => Main.Instance.Handler.KeyDown += onKeyDown;
+        protected override void OnEnable() => Main.Instance.Listener.OnKeyPressed += onKeyDown;
 
 
-        protected override void OnDisable() => Main.Instance.Handler.KeyDown -= onKeyDown;
+        protected override void OnDisable() => Main.Instance.Listener.OnKeyPressed -= onKeyDown;
 
 
 
-        private void onKeyDown(object sender, KeyEventArgs e)
+        private void onKeyDown(KeyPressArgs e)
         {
-            if (e.KeyCode == Keys.H)
+            if (e.KeyPressed == Key.H)
             {
                 if (enabled = !enabled) Player.SetThirdPersonView();
 

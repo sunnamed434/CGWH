@@ -1,6 +1,8 @@
 ﻿using CGWH.Core.Handlers;
+using CGWH.Core.Input;
 using System.Threading;
 using System.Windows.Forms;
+using System.Windows.Input;
 
 namespace CGWH.Core.Functions
 {
@@ -17,10 +19,9 @@ namespace CGWH.Core.Functions
 
 
 
-
         protected override void OnEnable()
         {
-            Main.Instance.Handler.KeyDown += onKeyDown;
+            Main.Instance.Listener.OnKeyPressed += onKeyDown;
 
 
 
@@ -29,7 +30,7 @@ namespace CGWH.Core.Functions
 
        
 
-        protected override void OnDisable() => Main.Instance.Handler.KeyDown -= onKeyDown;
+        protected override void OnDisable() => Main.Instance.Listener.OnKeyPressed -= onKeyDown;
 
 
 
@@ -44,7 +45,7 @@ namespace CGWH.Core.Functions
                         if (InputHandler.GetKeyDown(Keys.Space) && Player.IsGround)
                         {
                             Player.Jump();
-                            Thread.Sleep(3);
+                            Thread.Sleep(1);
                         }
                     }
 
@@ -57,9 +58,9 @@ namespace CGWH.Core.Functions
 
 
 
-        private void onKeyDown(object sender, KeyEventArgs e)
+        private void onKeyDown(KeyPressArgs e)
         {
-            if (e.KeyCode == Keys.C) enabled = !enabled;
+            if (e.KeyPressed == Key.C) enabled = !enabled;
         }
     }
 }

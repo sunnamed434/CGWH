@@ -1,6 +1,5 @@
 ﻿using CGWH.Core.Handlers;
 using System.Threading;
-using System.Windows.Forms;
 
 namespace CGWH.Core.Features
 {

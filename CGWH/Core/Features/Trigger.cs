@@ -23,7 +23,7 @@ namespace CGWH.Core.Functions
                 {
                     if (InputHandler.GetKeyDown(Keys.LMenu))
                     {
-                        if (Player.TryGetCrosshairTrigger(out CrosshairParameters parameters) && parameters != null && !parameters.TriggerIsTeammate())
+                        if (Player.TryGetCrosshairEnemyTrigger(out CrosshairParameters parameters) && !parameters.TriggerIsTeammate())
                         {
                             Player.Attack();
                         }

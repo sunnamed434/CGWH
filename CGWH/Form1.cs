@@ -2,9 +2,10 @@
 using CGWH.Core.Features;
 using CGWH.Core.Functions;
 using CGWH.Core.Handlers;
-using Gma.System.MouseKeyHook;
+using CGWH.Core.Input;
+using CGWH.Core.Sound;
 using System;
-using System.Drawing;
+using System.Diagnostics;
 using System.Windows.Forms;
 
 namespace CGWH
@@ -15,7 +16,9 @@ namespace CGWH
 
 
 
-        internal readonly IKeyboardMouseEvents Handler;
+        internal readonly LowLevelKeyboardListener Listener;
+
+        internal readonly SoundHandler SoundHandler;
 
 
 
@@ -27,7 +30,9 @@ namespace CGWH
 
             FormClosed += onMainUnload;
 
-            Handler = Hook.GlobalEvents();
+            Listener = new LowLevelKeyboardListener();
+
+            SoundHandler = new SoundHandler();
 
 
 
@@ -56,6 +61,8 @@ namespace CGWH
             new AutoPistol(true);
 
             new Radar(false);
+
+            new SoundHandler();
         }
 
 
@@ -72,6 +79,8 @@ namespace CGWH
             ApplicationHandler.Unload?.Invoke();
 
             FormClosed -= onMainUnload;
+
+            Process.GetCurrentProcess().Kill();
         }
 
         #endregion

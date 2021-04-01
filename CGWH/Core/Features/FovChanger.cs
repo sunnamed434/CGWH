@@ -1,5 +1,7 @@
 ﻿using CGWH.Core.Handlers;
+using CGWH.Core.Input;
 using System.Windows.Forms;
+using System.Windows.Input;
 
 namespace CGWH.Core.Functions
 {
@@ -16,17 +18,17 @@ namespace CGWH.Core.Functions
 
 
 
-        protected override void OnEnable() => Main.Instance.Handler.KeyDown += onKeyDown;
+        protected override void OnEnable() => Main.Instance.Listener.OnKeyPressed += onKeyDown;
 
         
 
-        protected override void OnDisable() => Main.Instance.Handler.KeyDown += onKeyDown;
+        protected override void OnDisable() => Main.Instance.Listener.OnKeyPressed -= onKeyDown;
 
 
 
-        private void onKeyDown(object sender, KeyEventArgs e)
+        private void onKeyDown(KeyPressArgs e)
         {
-            if (e.KeyCode == Keys.O && !Player.IsScoping)
+            if (e.KeyPressed == Key.O && !Player.IsScoping)
             {
                 if (enabled = !enabled) Player.SetFov(110);
 

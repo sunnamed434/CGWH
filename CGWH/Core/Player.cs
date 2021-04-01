@@ -1,4 +1,5 @@
 ﻿using CGWH.Core.Other;
+using System;
 
 namespace CGWH.Core
 {
@@ -78,7 +79,7 @@ namespace CGWH.Core
 
 		internal static void SetFovByDefault() => Cheat.Memory.Write<int>(Local + Offsets.m_iDefaultFOV, 90);
 
-		internal static bool TryGetCrosshairTrigger(out CrosshairParameters parameters)
+		internal static bool TryGetCrosshairEnemyTrigger(out CrosshairParameters parameters)
 		{
 			bool result = false;
 
@@ -87,12 +88,15 @@ namespace CGWH.Core
 			int triggerValue = 0;
 			if ((triggerValue = Cheat.Memory.Read<int>(Local + Offsets.m_iCrosshairId)) > 0)
 			{
-				int enemy = Cheat.Memory.Read<int>(Cheat.ModuleAddress + Offsets.dwEntityList + (Crosshair - 1) * 0x10);
+				if (triggerValue >= 0 && triggerValue <= 64)
+                {
+					int enemy = Cheat.Memory.Read<int>(Cheat.ModuleAddress + Offsets.dwEntityList + (Crosshair - 1) * 0x10);
 
-				int enemyTeam = Cheat.Memory.Read<int>(enemy + Offsets.m_iTeamNum);
+					int enemyTeam = Cheat.Memory.Read<int>(enemy + Offsets.m_iTeamNum);
 
-				parameters = new CrosshairParameters(enemy, enemyTeam, triggerValue);
-				result = true;
+					parameters = new CrosshairParameters(enemy, enemyTeam, triggerValue);
+					result = true;
+				}
 			}
 
 			return result;
@@ -146,7 +150,6 @@ namespace CGWH.Core
 			WEAPON_C4 = 49,
 			WEAPON_KNIFE_T = 59,
 			WEAPON_M4A1_SILENCER = 60,
-			WEAPON_USP_SILENCER = 61,
 			WEAPON_CZ75A = 63,
 			WEAPON_REVOLVER = 64,
 			WEAPON_KNIFE_BAYONET = 500,
@@ -157,7 +160,8 @@ namespace CGWH.Core
 			WEAPON_KNIFE_TACTICAL = 509,
 			WEAPON_KNIFE_FALCHION = 512,
 			WEAPON_KNIFE_BUTTERFLY = 515,
-			WEAPON_KNIFE_PUSH = 516
+			WEAPON_KNIFE_PUSH = 516,
+			WEAPON_USP_SILENCER = 262205
 		}
 
 		internal enum Weapon : int
@@ -196,9 +200,9 @@ namespace CGWH.Core
 			WEAPON_TEC9 = 30,
 			WEAPON_HKP2000 = 32,
 			WEAPON_P250 = 36,
-			WEAPON_USP_SILENCER = 61,
 			WEAPON_CZ75A = 63,
-			WEAPON_REVOLVER = 64
+			WEAPON_REVOLVER = 64,
+			WEAPON_USP_SILENCER = 262205
 		}
 
 		internal enum Grenade : int

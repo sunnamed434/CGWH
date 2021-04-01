@@ -1,6 +1,7 @@
 ﻿using CGWH.Core.Handlers;
+using CGWH.Core.Input;
 using System.Threading;
-using System.Windows.Forms;
+using System.Windows.Input;
 
 namespace CGWH.Core.Features
 {
@@ -19,7 +20,7 @@ namespace CGWH.Core.Features
             
         protected override void OnEnable()
         {
-            Main.Instance.Handler.KeyDown += onKeyDown;
+            Main.Instance.Listener.OnKeyPressed += onKeyDown;
 
 
 
@@ -30,7 +31,7 @@ namespace CGWH.Core.Features
 
         protected override void OnDisable() 
         {
-            Main.Instance.Handler.KeyDown -= onKeyDown;
+            Main.Instance.Listener.OnKeyPressed -= onKeyDown;
         }
 
 
@@ -60,9 +61,9 @@ namespace CGWH.Core.Features
 
 
 
-        private void onKeyDown(object sender, KeyEventArgs e)
+        private void onKeyDown(KeyPressArgs e)
         {
-            if (e.KeyCode == Keys.N) enabled = !enabled;
+            if (e.KeyPressed == Key.N) enabled = !enabled;
         }
     }
 }
