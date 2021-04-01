@@ -90,6 +90,7 @@
     <Compile Include="Core\Features\ConsoleExecute.cs" />
     <Compile Include="Core\Features\ESP.cs" />
     <Compile Include="Core\Features\FovChanger.cs" />
+    <Compile Include="Core\Features\Radar.cs" />
     <Compile Include="Core\Features\ThirdPerson.cs" />
     <Compile Include="Core\Features\Trigger.cs" />
     <Compile Include="Core\Handlers\ApplicationHandler.cs" />

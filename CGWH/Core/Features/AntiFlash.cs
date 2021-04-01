@@ -5,7 +5,14 @@ namespace CGWH.Core.Functions
 {
     internal class AntiFlash : InitializeHandler
     {
-        private bool enabled = false;
+        private bool enabled;
+
+
+
+        public AntiFlash(bool enabled)
+        {
+            this.enabled = enabled;
+        }
 
 
 

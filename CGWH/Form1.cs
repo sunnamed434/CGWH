@@ -45,15 +45,17 @@ namespace CGWH
 
 
 
-            new ESP();
+            new ESP(true);
 
             new Trigger();
 
-            new AntiFlash();
+            new AntiFlash(false);
 
-            new AutoBunnyhop();
+            new AutoBunnyhop(false);
 
-            new AutoPistol();
+            new AutoPistol(true);
+
+            new Radar(false);
         }
 
 

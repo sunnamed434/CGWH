@@ -4,10 +4,16 @@ using System.Windows.Forms;
 
 namespace CGWH.Core.Functions
 {
-    [VAC]
     internal class ThirdPerson : InitializeHandler
     {
         private bool enabled;
+
+
+
+        public ThirdPerson(bool enabled)
+        {
+            this.enabled = enabled;
+        }
 
 
 

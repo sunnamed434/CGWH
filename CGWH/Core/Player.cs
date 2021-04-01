@@ -44,9 +44,8 @@ namespace CGWH.Core
 			HandsItemId == (int)Pistol.WEAPON_CZ75A || HandsItemId == (int)Pistol.WEAPON_DEAGLE ||
 			HandsItemId == (int)Pistol.WEAPON_FIVESEVEN || HandsItemId == (int)Pistol.WEAPON_GLOCK ||
 			HandsItemId == (int)Pistol.WEAPON_HKP2000 || HandsItemId == (int)Pistol.WEAPON_P250 ||
-			HandsItemId == (int)Pistol.WEAPON_REVOLVER || HandsItemId == (int)Pistol.WEAPON_TASER ||
-			HandsItemId == (int)Pistol.WEAPON_TEC9 || HandsItemId == (int)Pistol.WEAPON_USP_SILENCER ||
-			HandsItemId == (int)Pistol.WEAPON_DUAL_BERRETS;
+			HandsItemId == (int)Pistol.WEAPON_REVOLVER || HandsItemId == (int)Pistol.WEAPON_TEC9 ||
+			HandsItemId == (int)Pistol.WEAPON_USP_SILENCER || HandsItemId == (int)Pistol.WEAPON_DUAL_BERRETS;
 
 		internal static bool HasHandsGrenade =>
 			HandsItemId == (int)Grenade.WEAPON_DECOY || HandsItemId == (int)Grenade.WEAPON_FLASHBANG ||
@@ -195,7 +194,6 @@ namespace CGWH.Core
 			WEAPON_FIVESEVEN = 3,
 			WEAPON_GLOCK = 4,
 			WEAPON_TEC9 = 30,
-			WEAPON_TASER = 31,
 			WEAPON_HKP2000 = 32,
 			WEAPON_P250 = 36,
 			WEAPON_USP_SILENCER = 61,
@@ -230,7 +228,8 @@ namespace CGWH.Core
 
 		internal enum Other : int
 		{
-			WEAPON_C4 = 49
+			WEAPON_C4 = 49,
+			WEAPON_TASER = 31
 		}
 	}
 }

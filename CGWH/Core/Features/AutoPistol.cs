@@ -6,6 +6,17 @@ namespace CGWH.Core.Features
 {
     internal class AutoPistol : InitializeHandler
     {
+        private bool enabled;
+
+
+
+        public AutoPistol(bool enabled)
+        {
+            this.enabled = enabled;
+        }
+
+
+
         protected override void OnEnable() => enable();
 
 
@@ -20,10 +31,13 @@ namespace CGWH.Core.Features
             {
                 while (true)
                 {
-                    if (InputHandler.GetLeftMouseButtonDown() && Player.HasHandsPistol)
+                    if (enabled)
                     {
-                        Player.Attack();
-                        Thread.Sleep(3);
+                        if (InputHandler.GetLeftMouseButtonDown() && Player.HasHandsPistol)
+                        {
+                            Player.Attack();
+                            Thread.Sleep(3);
+                        }
                     }
 
                     Thread.Sleep(1);

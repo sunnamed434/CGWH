@@ -2,22 +2,21 @@
 using System.Threading;
 using System.Windows.Forms;
 
-namespace CGWH.Core.Functions
+namespace CGWH.Core.Features
 {
-    internal class AutoBunnyhop : InitializeHandler
+    internal class Radar : InitializeHandler
     {
         private bool enabled;
 
 
 
-        public AutoBunnyhop(bool enabled)
+        public Radar(bool enabled)
         {
             this.enabled = enabled;
         }
 
 
-
-
+            
         protected override void OnEnable()
         {
             Main.Instance.Handler.KeyDown += onKeyDown;
@@ -27,9 +26,12 @@ namespace CGWH.Core.Functions
             enable();
         }
 
-       
+        
 
-        protected override void OnDisable() => Main.Instance.Handler.KeyDown -= onKeyDown;
+        protected override void OnDisable() 
+        {
+            Main.Instance.Handler.KeyDown -= onKeyDown;
+        }
 
 
 
@@ -41,14 +43,15 @@ namespace CGWH.Core.Functions
                 {
                     if (enabled)
                     {
-                        if (InputHandler.GetKeyDown(Keys.Space) && Player.IsGround)
+                        for (int i = 0; i < 64; i++)
                         {
-                            Player.Jump();
-                            Thread.Sleep(3);
+                            int enemy = Cheat.Memory.Read<int>(Cheat.ModuleAddress + Offsets.dwEntityList + (i * 0x10));
+
+                            if (Cheat.Memory.Read<bool>(enemy + Offsets.m_bDormant)) continue;
+
+                            Cheat.Memory.Write<bool>(enemy + Offsets.m_bSpotted, true);
                         }
                     }
-
-                    Thread.Sleep(1);
                 }
             });
 
@@ -59,7 +62,7 @@ namespace CGWH.Core.Functions
 
         private void onKeyDown(object sender, KeyEventArgs e)
         {
-            if (e.KeyCode == Keys.C) enabled = !enabled;
+            if (e.KeyCode == Keys.N) enabled = !enabled;
         }
     }
 }

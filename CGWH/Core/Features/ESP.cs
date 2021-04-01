@@ -10,6 +10,13 @@ namespace CGWH.Core.Functions
 
 
 
+        public ESP(bool enabled)
+        {
+            this.enabled = enabled;
+        }
+
+
+
         protected override void OnEnable()
         {
             Main.Instance.Handler.KeyDown += onKeyDown;
@@ -43,10 +50,9 @@ namespace CGWH.Core.Functions
 
                             if (enemyTeamNum != 0)
                             {
-                                if (enemyTeamNum != playerTeamNum)
-                                    drawEnemy(index, 255, 0, 0, 255);
-                                else
-                                    drawEnemy(index, 0, 0, 255, 255);
+                                if (enemyTeamNum != playerTeamNum) drawEnemy(index, 255, 0, 0, 255);
+
+                                else drawEnemy(index, 0, 0, 255, 255);
                             }
                         }
                     }
@@ -78,11 +84,6 @@ namespace CGWH.Core.Functions
         private void onKeyDown(object sender, KeyEventArgs e)
         {
             if (e.KeyCode == Keys.Z) enabled = !enabled;
-
-            if (e.KeyCode == Keys.K)
-            {
-                MessageBox.Show("#0 " + Player.HandsItemId);
-            }
         }
     }
 }

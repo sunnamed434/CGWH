@@ -4,10 +4,16 @@ using System.Windows.Forms;
 
 namespace CGWH.Core.Functions
 {
-    [VAC]
     internal class FovChanger : InitializeHandler
     {
-        private bool enabled = false;
+        private bool enabled;
+
+
+
+        public FovChanger(bool enabled)
+        {
+            this.enabled = enabled;
+        }
 
 
 
