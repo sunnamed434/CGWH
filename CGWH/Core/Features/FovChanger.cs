@@ -1,5 +1,4 @@
-﻿using CGWH.Core.Attributes;
-using CGWH.Core.Handlers;
+﻿using CGWH.Core.Handlers;
 using System.Windows.Forms;
 
 namespace CGWH.Core.Functions
