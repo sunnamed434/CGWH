@@ -1,6 +1,5 @@
 ﻿using CGWH.Core.Handlers;
 using CGWH.Core.Input;
-using System.Windows.Forms;
 using System.Windows.Input;
 
 namespace CGWH.Core.Functions
