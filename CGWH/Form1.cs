@@ -56,6 +56,8 @@ namespace CGWH
             new AutoPistol(true);
 
             new Radar(false);
+
+            new FovChanger(false);
         }
 
 
