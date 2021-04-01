@@ -6,7 +6,7 @@ Counter-Strike: Global Offensive - External Cheat
 ## BunnnyHop (Toggle C),
 ## AntiFlash (Toggle J),
 ## ThirdPerson (Toggle H, DISABLED),
-## Fov (Toggle O, DISABLED),
+## Fov (Toggle O),
 ## Trigger (Press Left_ALT),
 ## Radar (Toggle N),
 ## ConsoleExecute (Soon...)
