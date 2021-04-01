@@ -10,7 +10,7 @@ namespace CGWH.Core.Functions
 
 
 
-        public ESP(bool enabled)
+        internal ESP(bool enabled)
         {
             this.enabled = enabled;
         }

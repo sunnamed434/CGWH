@@ -10,7 +10,7 @@ namespace CGWH.Core.Functions
 
 
 
-        public ThirdPerson(bool enabled)
+        internal ThirdPerson(bool enabled)
         {
             this.enabled = enabled;
         }

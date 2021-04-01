@@ -10,7 +10,7 @@ namespace CGWH.Core.Features
 
 
 
-        public AutoPistol(bool enabled)
+        internal AutoPistol(bool enabled)
         {
             this.enabled = enabled;
         }

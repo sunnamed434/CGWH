@@ -10,7 +10,7 @@ namespace CGWH.Core.Features
 
 
 
-        public Radar(bool enabled)
+        internal Radar(bool enabled)
         {
             this.enabled = enabled;
         }

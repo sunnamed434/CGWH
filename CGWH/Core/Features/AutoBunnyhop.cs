@@ -10,7 +10,7 @@ namespace CGWH.Core.Functions
 
 
 
-        public AutoBunnyhop(bool enabled)
+        internal AutoBunnyhop(bool enabled)
         {
             this.enabled = enabled;
         }

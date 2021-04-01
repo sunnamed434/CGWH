@@ -9,7 +9,7 @@ namespace CGWH.Core.Functions
 
 
 
-        public AntiFlash(bool enabled)
+        internal AntiFlash(bool enabled)
         {
             this.enabled = enabled;
         }

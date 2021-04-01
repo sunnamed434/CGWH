@@ -9,7 +9,7 @@ namespace CGWH.Core.Functions
 
 
 
-        public FovChanger(bool enabled)
+        internal FovChanger(bool enabled)
         {
             this.enabled = enabled;
         }
