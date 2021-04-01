@@ -100,7 +100,6 @@
     <Compile Include="Core\Input\LowLevelKeyboardListener.cs" />
     <Compile Include="Core\Player.cs" />
     <Compile Include="Core\Offsets.cs" />
-    <Compile Include="Core\Sound\SoundHandler.cs" />
     <Compile Include="Core\Utilities\Debug.cs" />
     <Compile Include="Form1.cs">
       <SubType>Form</SubType>

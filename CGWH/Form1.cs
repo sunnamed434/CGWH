@@ -3,7 +3,6 @@ using CGWH.Core.Features;
 using CGWH.Core.Functions;
 using CGWH.Core.Handlers;
 using CGWH.Core.Input;
-using CGWH.Core.Sound;
 using System;
 using System.Diagnostics;
 using System.Windows.Forms;
@@ -18,8 +17,6 @@ namespace CGWH
 
         internal readonly LowLevelKeyboardListener Listener;
 
-        internal readonly SoundHandler SoundHandler;
-
 
 
         internal Main()
@@ -31,8 +28,6 @@ namespace CGWH
             FormClosed += onMainUnload;
 
             Listener = new LowLevelKeyboardListener();
-
-            SoundHandler = new SoundHandler();
 
 
 
@@ -61,8 +56,6 @@ namespace CGWH
             new AutoPistol(true);
 
             new Radar(false);
-
-            new SoundHandler();
         }
 
 
