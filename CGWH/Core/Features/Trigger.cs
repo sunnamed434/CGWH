@@ -1,6 +1,7 @@
 ﻿using CGWH.Core.Handlers;
 using CGWH.Core.Other;
 using System.Threading;
+using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace CGWH.Core.Functions
@@ -17,15 +18,18 @@ namespace CGWH.Core.Functions
 
         private void enable()
         {
-            Thread thread = new Thread(t =>
+            Task task = new Task(() =>
             {
                 while (true)
                 {
-                    if (InputHandler.GetKeyDown(Keys.LMenu))
+                    if (WindowHandler.TryGetCSGOWindow())
                     {
-                        if (Player.TryGetCrosshairEnemyTrigger(out CrosshairParameters parameters) && !parameters.TriggerIsTeammate())
+                        if (InputHandler.GetKeyDown(Keys.LMenu))
                         {
-                            Player.Attack();
+                            if (Player.TryGetCrosshairEnemyTrigger(out CrosshairParameters parameters) && !parameters.TriggerIsTeammate())
+                            {
+                                Player.Attack();
+                            }
                         }
                     }
 
@@ -33,7 +37,7 @@ namespace CGWH.Core.Functions
                 }
             });
 
-            thread.Start();
+            task.Start();
         }
     }
 }

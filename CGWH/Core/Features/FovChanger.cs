@@ -27,11 +27,14 @@ namespace CGWH.Core.Functions
 
         private void onKeyDown(KeyPressArgs e)
         {
-            if (e.KeyPressed == Key.O && !Player.IsScoping)
+            if (WindowHandler.TryGetCSGOWindow())
             {
-                if (enabled = !enabled) Player.SetFov(110);
+                if (e.KeyPressed == Key.O && !Player.IsScoping)
+                {
+                    if (enabled = !enabled) Player.SetFov(110);
 
-                else Player.SetFovByDefault();
+                    else Player.SetFovByDefault();
+                }
             }
         }
     }

@@ -2,6 +2,7 @@
 using CGWH.Core.Input;
 using System.Media;
 using System.Threading;
+using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Windows.Input;
 
@@ -35,25 +36,28 @@ namespace CGWH.Core.Functions
 
         private void enable()
         {
-            Thread thread = new Thread(t =>
+            Task task = new Task(() =>
             {
                 while (true)
                 {
                     if (enabled)
                     {
-                        int playerTeamNum = Cheat.Memory.Read<int>(Player.Local + Offsets.m_iTeamNum);
-
-                        for (int i = 0; i < 64; i++)
+                        if (WindowHandler.TryGetCSGOWindow())
                         {
-                            int enemyNum = Cheat.Memory.Read<int>(Cheat.ModuleAddress + Offsets.dwEntityList + i * 16);
-                            int enemyTeamNum = Cheat.Memory.Read<int>(enemyNum + Offsets.m_iTeamNum);
-                            int index = Cheat.Memory.Read<int>(enemyNum + Offsets.m_iGlowIndex);
+                            int playerTeamNum = Cheat.Memory.Read<int>(Player.Local + Offsets.m_iTeamNum);
 
-                            if (enemyTeamNum != 0)
+                            for (int i = 0; i < 10; i++)
                             {
-                                if (enemyTeamNum != playerTeamNum) drawEnemy(index, 255, 0, 0, 255);
+                                int enemyNum = Cheat.Memory.Read<int>(Cheat.ModuleAddress + Offsets.dwEntityList + i * 16);
+                                int enemyTeamNum = Cheat.Memory.Read<int>(enemyNum + Offsets.m_iTeamNum);
+                                int index = Cheat.Memory.Read<int>(enemyNum + Offsets.m_iGlowIndex);
 
-                                else drawEnemy(index, 0, 0, 255, 255);
+                                if (enemyTeamNum != 0)
+                                {
+                                    if (enemyTeamNum != playerTeamNum) drawEnemy(index, 255, 0, 0, 255);
+
+                                    else drawEnemy(index, 0, 0, 255, 255);
+                                }
                             }
                         }
                     }
@@ -62,7 +66,7 @@ namespace CGWH.Core.Functions
                 }
             });
 
-            thread.Start();
+            task.Start();
         }
 
 
@@ -84,7 +88,10 @@ namespace CGWH.Core.Functions
 
         private void onKeyDown(KeyPressArgs e)
         {
-            if (e.KeyPressed == Key.Z) enabled = !enabled;
+            if (WindowHandler.TryGetCSGOWindow())
+            {
+                if (e.KeyPressed == Key.Z) enabled = !enabled;
+            }
         }
     }
 }

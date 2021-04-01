@@ -32,10 +32,13 @@ namespace CGWH.Core.Features
                 {
                     if (enabled)
                     {
-                        if (InputHandler.GetLeftMouseButtonDown() && Player.HasHandsPistol)
+                        if (WindowHandler.TryGetCSGOWindow())
                         {
-                            Player.Attack();
-                            Thread.Sleep(3);
+                            if (InputHandler.GetLeftMouseButtonDown() && Player.HasHandsPistol)
+                            {
+                                Player.Attack();
+                                Thread.Sleep(3);
+                            }
                         }
                     }
 

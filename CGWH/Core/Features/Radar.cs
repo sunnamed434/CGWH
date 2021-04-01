@@ -1,6 +1,7 @@
 ﻿using CGWH.Core.Handlers;
 using CGWH.Core.Input;
 using System.Threading;
+using System.Threading.Tasks;
 using System.Windows.Input;
 
 namespace CGWH.Core.Features
@@ -38,32 +39,38 @@ namespace CGWH.Core.Features
 
         private void enable()
         {
-            Thread thread = new Thread(t =>
+            Task task = new Task(() =>
             {
                 while (true)
                 {
                     if (enabled)
                     {
-                        for (int i = 0; i < 64; i++)
+                        if (WindowHandler.TryGetCSGOWindow())
                         {
-                            int enemy = Cheat.Memory.Read<int>(Cheat.ModuleAddress + Offsets.dwEntityList + (i * 0x10));
+                            for (int i = 0; i < 10; i++)
+                            {
+                                int enemy = Cheat.Memory.Read<int>(Cheat.ModuleAddress + Offsets.dwEntityList + (i * 0x10));
 
-                            if (Cheat.Memory.Read<bool>(enemy + Offsets.m_bDormant)) continue;
+                                if (Cheat.Memory.Read<bool>(enemy + Offsets.m_bDormant)) continue;
 
-                            Cheat.Memory.Write<bool>(enemy + Offsets.m_bSpotted, true);
+                                Cheat.Memory.Write<bool>(enemy + Offsets.m_bSpotted, true);
+                            }
                         }
                     }
                 }
             });
 
-            thread.Start();
+            task.Start();
         }
 
 
 
         private void onKeyDown(KeyPressArgs e)
         {
-            if (e.KeyPressed == Key.N) enabled = !enabled;
+            if (WindowHandler.TryGetCSGOWindow())
+            {
+                if (e.KeyPressed == Key.N) enabled = !enabled;
+            }
         }
     }
 }

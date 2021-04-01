@@ -20,17 +20,21 @@ namespace CGWH.Core.Functions
         protected override void OnEnable() => Main.Instance.Listener.OnKeyPressed += onKeyDown;
 
 
+
         protected override void OnDisable() => Main.Instance.Listener.OnKeyPressed -= onKeyDown;
 
 
 
         private void onKeyDown(KeyPressArgs e)
         {
-            if (e.KeyPressed == Key.H)
+            if (WindowHandler.TryGetCSGOWindow())
             {
-                if (enabled = !enabled) Player.SetThirdPersonView();
+                if (e.KeyPressed == Key.H)
+                {
+                    if (enabled = !enabled) Player.SetThirdPersonView();
 
-                else Player.SetFirstPersonView();
+                    else Player.SetFirstPersonView();
+                }
             }
         }
     }

@@ -67,6 +67,8 @@ namespace CGWH
         private void MainLoad(object sender, EventArgs e)
         {
             ApplicationHandler.Load?.Invoke();
+
+            FormBorderStyle = FormBorderStyle.FixedToolWindow;
         }
 
         private void onMainUnload(object sender, FormClosedEventArgs e)

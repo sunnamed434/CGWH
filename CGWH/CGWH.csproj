@@ -84,7 +84,6 @@
     <Compile Include="Core\Features\AntiFlash.cs" />
     <Compile Include="Core\Features\AutoBunnyhop.cs" />
     <Compile Include="Core\Features\AutoPistol.cs" />
-    <Compile Include="Core\Features\ConsoleExecute.cs" />
     <Compile Include="Core\Features\ESP.cs" />
     <Compile Include="Core\Features\FovChanger.cs" />
     <Compile Include="Core\Features\Radar.cs" />
@@ -94,6 +93,7 @@
     <Compile Include="Core\Handlers\InitializeHandler.cs" />
     <Compile Include="Core\Handlers\InputHandler.cs" />
     <Compile Include="Core\Handlers\MouseHandler.cs" />
+    <Compile Include="Core\Handlers\WindowHandler.cs" />
     <Compile Include="Core\Information.cs" />
     <Compile Include="Core\Parameters\CrosshairParameters.cs" />
     <Compile Include="Core\Input\KeyPressArgs.cs" />

@@ -1,6 +1,7 @@
 ﻿using CGWH.Core.Handlers;
 using CGWH.Core.Input;
 using System.Threading;
+using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Windows.Input;
 
@@ -36,16 +37,19 @@ namespace CGWH.Core.Functions
 
         private void enable()
         {
-            Thread thread = new Thread(t =>
+            Task task = new Task(() =>
             {
                 while (true)
                 {
                     if (enabled)
                     {
-                        if (InputHandler.GetKeyDown(Keys.Space) && Player.IsGround)
+                        if (WindowHandler.TryGetCSGOWindow())
                         {
-                            Player.Jump();
-                            Thread.Sleep(1);
+                            if (InputHandler.GetKeyDown(Keys.Space) && Player.IsGround)
+                            {
+                                Player.Jump();
+                                Thread.Sleep(1);
+                            }
                         }
                     }
 
@@ -53,14 +57,17 @@ namespace CGWH.Core.Functions
                 }
             });
 
-            thread.Start();
+            task.Start();
         }
 
 
 
         private void onKeyDown(KeyPressArgs e)
         {
-            if (e.KeyPressed == Key.C) enabled = !enabled;
+            if (WindowHandler.TryGetCSGOWindow())
+            {
+                if (e.KeyPressed == Key.C) enabled = !enabled;
+            }
         }
     }
 }

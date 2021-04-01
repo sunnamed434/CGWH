@@ -4,6 +4,7 @@
     {
         internal const string NAME = "CGWH";
         internal const string PROCESS_NAME = "csgo";
+        internal const string PROCESS_FULLNAME = "Counter-Strike: Global Offensive";
         internal const string MODULE_DLL_NAME = "client.dll";
 
 
