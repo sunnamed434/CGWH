@@ -6,7 +6,7 @@ namespace CGWH.Core.Functions
 {
     internal class ESP : InitializeHandler
     {
-        private bool enabled = true;
+        private bool enabled;
 
 
 
