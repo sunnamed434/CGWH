@@ -1,7 +1,6 @@
 ﻿using CGWH.Core.Attributes;
 using CGWH.Core.Handlers;
 using System.Windows.Forms;
-using static CGWH.Core.Input.GlobalKeyboardHook;
 
 namespace CGWH.Core.Functions
 {
@@ -12,26 +11,20 @@ namespace CGWH.Core.Functions
 
 
 
-        protected override void OnEnable() => Main.Instance.Hook.KeyboardPressed += onKeyPress;
+        protected override void OnEnable() => Main.Instance.Handler.KeyDown += onKeyDown;
+
+
+        protected override void OnDisable() => Main.Instance.Handler.KeyDown -= onKeyDown;
 
 
 
-        protected override void OnDisable() => Main.Instance.Hook.KeyboardPressed -= onKeyPress;
-
-
-
-        private void onKeyPress(object sender, Input.GlobalKeyboardHookEventArgs e)
+        private void onKeyDown(object sender, KeyEventArgs e)
         {
-            if (e.KeyboardData.Key == Keys.H && e.KeyboardState == KeyboardState.KeyDown)
+            if (e.KeyCode == Keys.H)
             {
-                if (enabled = !enabled)
-                {
-                    Player.SetThirdPersonView();
-                }
-                else
-                {
-                    Player.SetFirstPersonView();
-                }
+                if (enabled = !enabled) Player.SetThirdPersonView();
+
+                else Player.SetFirstPersonView();
             }
         }
     }

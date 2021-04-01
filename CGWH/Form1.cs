@@ -1,7 +1,8 @@
 ﻿using CGWH.Core;
+using CGWH.Core.Features;
 using CGWH.Core.Functions;
 using CGWH.Core.Handlers;
-using CGWH.Core.Input;
+using Gma.System.MouseKeyHook;
 using System;
 using System.Drawing;
 using System.Windows.Forms;
@@ -14,7 +15,7 @@ namespace CGWH
 
 
 
-        internal readonly GlobalKeyboardHook Hook;
+        internal readonly IKeyboardMouseEvents Handler;
 
 
 
@@ -24,36 +25,25 @@ namespace CGWH
 
             Instance = this;
 
-
-
             FormClosed += onMainUnload;
+
+            Handler = Hook.GlobalEvents();
 
 
 
             if (!Cheat.TryCheckValidVersion(out string content))
             {
-                InformationText.Text = "Version is not valid!";
-
-                InformationText.ForeColor = Color.Red;
-
                 MessageBox.Show(content, "Game version is not valid!", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
 
             if (!Cheat.TryFindProcess())
             {
-                InformationText.Text = "Can't found CS:GO Process!";
-
-                InformationText.ForeColor = Color.Red;
-
                 MessageBox.Show("Please start game!", "CSGO Not found", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
 
-            InformationText.Text = "Cheat loaded to CS:GO";
-            InformationText.ForeColor = Color.Green;
 
-            Hook = new GlobalKeyboardHook();
 
             new ESP();
 
@@ -62,6 +52,8 @@ namespace CGWH
             new AntiFlash();
 
             new AutoBunnyhop();
+
+            new AutoPistol();
         }
 
 

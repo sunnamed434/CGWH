@@ -37,6 +37,9 @@
       <HintPath>..\packages\ControlzEx.4.4.0\lib\net462\ControlzEx.dll</HintPath>
       <Private>False</Private>
     </Reference>
+    <Reference Include="Gma.System.MouseKeyHook">
+      <HintPath>..\libs\Gma.System.MouseKeyHook.dll</HintPath>
+    </Reference>
     <Reference Include="Memory">
       <HintPath>..\libs\Memory.dll</HintPath>
       <Private>True</Private>
@@ -83,16 +86,17 @@
     <Compile Include="Core\Cheat.cs" />
     <Compile Include="Core\Features\AntiFlash.cs" />
     <Compile Include="Core\Features\AutoBunnyhop.cs" />
+    <Compile Include="Core\Features\AutoPistol.cs" />
+    <Compile Include="Core\Features\ConsoleExecute.cs" />
     <Compile Include="Core\Features\ESP.cs" />
     <Compile Include="Core\Features\FovChanger.cs" />
     <Compile Include="Core\Features\ThirdPerson.cs" />
     <Compile Include="Core\Features\Trigger.cs" />
     <Compile Include="Core\Handlers\ApplicationHandler.cs" />
     <Compile Include="Core\Handlers\InitializeHandler.cs" />
-    <Compile Include="Core\Handlers\KeyboardHandler.cs" />
+    <Compile Include="Core\Handlers\InputHandler.cs" />
     <Compile Include="Core\Handlers\MouseHandler.cs" />
     <Compile Include="Core\Information.cs" />
-    <Compile Include="Core\Input\GlobalKeyboardHookEventArgs.cs" />
     <Compile Include="Core\CrosshairParameters.cs" />
     <Compile Include="Core\Player.cs" />
     <Compile Include="Core\Offsets.cs" />

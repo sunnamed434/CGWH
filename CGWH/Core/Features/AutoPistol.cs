@@ -1,11 +1,10 @@
 ﻿using CGWH.Core.Handlers;
-using CGWH.Core.Other;
 using System.Threading;
 using System.Windows.Forms;
 
-namespace CGWH.Core.Functions
+namespace CGWH.Core.Features
 {
-    internal class Trigger : InitializeHandler
+    internal class AutoPistol : InitializeHandler
     {
         protected override void OnEnable() => enable();
 
@@ -21,12 +20,10 @@ namespace CGWH.Core.Functions
             {
                 while (true)
                 {
-                    if (InputHandler.GetKeyDown(Keys.LMenu))
+                    if (InputHandler.GetLeftMouseButtonDown() && Player.HasHandsPistol)
                     {
-                        if (Player.TryGetCrosshairTrigger(out CrosshairParameters parameters) && parameters != null && !parameters.TriggerIsTeammate())
-                        {
-                            Player.Attack();
-                        }
+                        Player.Attack();
+                        Thread.Sleep(3);
                     }
 
                     Thread.Sleep(1);

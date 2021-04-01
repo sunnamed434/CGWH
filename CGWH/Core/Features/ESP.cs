@@ -1,5 +1,4 @@
 ﻿using CGWH.Core.Handlers;
-using CGWH.Core.Input;
 using System.Threading;
 using System.Windows.Forms;
 
@@ -13,16 +12,16 @@ namespace CGWH.Core.Functions
 
         protected override void OnEnable()
         {
-            Main.Instance.Hook.KeyboardPressed += onKeyPress;
+            Main.Instance.Handler.KeyDown += onKeyDown;
 
 
 
             enable();
         }
 
-        
+       
 
-        protected override void OnDisable() => Main.Instance.Hook.KeyboardPressed -= onKeyPress;
+        protected override void OnDisable() => Main.Instance.Handler.KeyDown -= onKeyDown;
 
 
 
@@ -76,11 +75,13 @@ namespace CGWH.Core.Functions
 
 
 
-        private void onKeyPress(object sender, GlobalKeyboardHookEventArgs e)
+        private void onKeyDown(object sender, KeyEventArgs e)
         {
-            if (e.KeyboardState == GlobalKeyboardHook.KeyboardState.KeyDown && e.KeyboardData.Key == Keys.Z)
+            if (e.KeyCode == Keys.Z) enabled = !enabled;
+
+            if (e.KeyCode == Keys.K)
             {
-                enabled = !enabled;
+                MessageBox.Show("#0 " + Player.HandsItemId);
             }
         }
     }
