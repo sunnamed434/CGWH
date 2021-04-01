@@ -5,6 +5,8 @@ Counter-Strike: Global Offensive - External Cheat
 ## WallHack (Toggle Z),
 ## BunnnyHop (Toggle C),
 ## AntiFlash (Toggle J),
-## ThirdPerson (Toggle H, DISABLED MAYBE VAC DETECT)
-## Fov (DISABLED MAYBE VAC DETECT)
-## Trigger (Press X)
+## ThirdPerson (Toggle H, DISABLED),
+## Fov (Toggle O, DISABLED),
+## Trigger (Press Left_ALT),
+## Radar (Toggle N),
+## ConsoleExecute (Soon...)
