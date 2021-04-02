@@ -1,5 +1,4 @@
 ﻿using CGWH.Core.Handlers;
-using CGWH.Core.Input;
 using System.Windows.Input;
 
 namespace CGWH.Core.Functions
@@ -25,11 +24,11 @@ namespace CGWH.Core.Functions
 
 
 
-        private void onKeyDown(KeyPressArgs e)
+        private void onKeyDown(Key key)
         {
             if (WindowHandler.TryGetCSGOWindow())
             {
-                if (e.KeyPressed == Key.O && !Player.IsScoping)
+                if (key == Key.O && !Player.IsScoping)
                 {
                     if (enabled = !enabled) Player.SetFov(110);
 

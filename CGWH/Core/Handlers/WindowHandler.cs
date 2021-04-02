@@ -17,11 +17,13 @@ namespace CGWH.Core.Handlers
 
         internal static string GetActiveWindowTitle()
         {
-            const int nChars = 256;
-            StringBuilder Buff = new StringBuilder(nChars);
+            byte value = byte.MaxValue;
+
+            StringBuilder Buff = new StringBuilder(value);
+
             IntPtr handle = GetForegroundWindow();
 
-            if (GetWindowText(handle, Buff, nChars) > 0)
+            if (GetWindowText(handle, Buff, value) > 0)
             {
                 return Buff.ToString();
             }

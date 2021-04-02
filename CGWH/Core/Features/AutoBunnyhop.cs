@@ -1,5 +1,4 @@
 ﻿using CGWH.Core.Handlers;
-using CGWH.Core.Input;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -62,11 +61,11 @@ namespace CGWH.Core.Functions
 
 
 
-        private void onKeyDown(KeyPressArgs e)
+        private void onKeyDown(Key key)
         {
             if (WindowHandler.TryGetCSGOWindow())
             {
-                if (e.KeyPressed == Key.C) enabled = !enabled;
+                if (key == Key.C) enabled = !enabled;
             }
         }
     }

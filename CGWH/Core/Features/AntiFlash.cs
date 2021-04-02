@@ -1,6 +1,4 @@
 ﻿using CGWH.Core.Handlers;
-using CGWH.Core.Input;
-using System.Windows.Forms;
 using System.Windows.Input;
 
 namespace CGWH.Core.Functions
@@ -26,11 +24,11 @@ namespace CGWH.Core.Functions
 
 
 
-        private void onKeyDown(KeyPressArgs e)
+        private void onKeyDown(Key key)
         {
             if (WindowHandler.TryGetCSGOWindow())
             {
-                if (e.KeyPressed == Key.J)
+                if (key == Key.J)
                 {
                     if (enabled = !enabled) Player.SetFlashAlpha(.0f);
 

@@ -1,5 +1,4 @@
-﻿using CGWH.Core.Handlers;
-using System;
+﻿using System;
 using System.Diagnostics;
 using System.Runtime.InteropServices;
 using System.Windows.Input;
@@ -14,23 +13,23 @@ namespace CGWH.Core.Input
 
         private const int WM_SYSKEYDOWN = 0x0104;
 
-        private IntPtr _hookID = IntPtr.Zero;
+        private IntPtr hookId = IntPtr.Zero;
 
 
 
-        private LowLevelKeyboardProc _proc { get; }
+        private LowLevelKeyboardProc keyboardProc { get; }
 
 
 
         internal delegate IntPtr LowLevelKeyboardProc(int nCode, IntPtr wParam, IntPtr lParam);
 
-        internal event Action<KeyPressArgs> OnKeyPressed;
+        internal event Action<Key> OnKeyPressed;
 
 
 
         internal LowLevelKeyboardListener()
         {
-            _proc = HookCallback;
+            keyboardProc = hookCallback;
 
             HookKeyboard();
         }
@@ -61,17 +60,17 @@ namespace CGWH.Core.Input
 
         internal void HookKeyboard()
         {
-            _hookID = SetHook(_proc);
+            hookId = setHook(keyboardProc);
         }
 
         internal void UnHookKeyboard()
         {
-            UnhookWindowsHookEx(_hookID);
+            UnhookWindowsHookEx(hookId);
         }
 
 
 
-        private IntPtr SetHook(LowLevelKeyboardProc proc)
+        private IntPtr setHook(LowLevelKeyboardProc proc)
         {
             using (Process curProcess = Process.GetCurrentProcess())
             using (ProcessModule curModule = curProcess.MainModule)
@@ -80,16 +79,16 @@ namespace CGWH.Core.Input
             }
         }
 
-        private IntPtr HookCallback(int nCode, IntPtr wParam, IntPtr lParam)
+        private IntPtr hookCallback(int nCode, IntPtr wParam, IntPtr lParam)
         {
             if (nCode >= 0 && wParam == (IntPtr)WM_KEYDOWN || wParam == (IntPtr)WM_SYSKEYDOWN)
             {
                 int vkCode = Marshal.ReadInt32(lParam);
 
-                OnKeyPressed?.Invoke(new KeyPressArgs(KeyInterop.KeyFromVirtualKey(vkCode)));
+                OnKeyPressed?.Invoke(KeyInterop.KeyFromVirtualKey(vkCode));
             }
 
-            return CallNextHookEx(_hookID, nCode, wParam, lParam);
+            return CallNextHookEx(hookId, nCode, wParam, lParam);
         }
     }
 }
