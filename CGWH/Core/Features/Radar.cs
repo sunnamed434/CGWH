@@ -45,7 +45,7 @@ namespace CGWH.Core.Features
                     {
                         if (WindowHandler.TryGetCSGOWindow())
                         {
-                            for (int i = 0; i < 10; i++)
+                            for (int i = 0; i < 64; i++)
                             {
                                 int enemy = Cheat.Memory.Read<int>(Cheat.ModuleAddress + Offsets.dwEntityList + (i * 0x10));
 

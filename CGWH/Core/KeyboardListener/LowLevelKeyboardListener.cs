@@ -5,7 +5,7 @@ using System.Windows.Input;
 
 namespace CGWH.Core.Input
 {
-    public class LowLevelKeyboardListener
+    public class SimpleKeyboardListener
     {
         private const int WH_KEYBOARD_LL = 13;
 
@@ -13,25 +13,25 @@ namespace CGWH.Core.Input
 
         private const int WM_SYSKEYDOWN = 0x0104;
 
+
+
         private IntPtr hookId = IntPtr.Zero;
 
-
-
-        private LowLevelKeyboardProc keyboardProc { get; }
+        private Handle handle { get; }
 
 
 
-        internal delegate IntPtr LowLevelKeyboardProc(int nCode, IntPtr wParam, IntPtr lParam);
+        internal delegate IntPtr Handle(int nCode, IntPtr wParam, IntPtr lParam);
 
         internal event Action<Key> OnKeyPressed;
 
 
 
-        internal LowLevelKeyboardListener()
+        internal SimpleKeyboardListener()
         {
-            keyboardProc = hookCallback;
+            handle = hookCallback;
 
-            HookKeyboard();
+            Hook();
         }
 
 
@@ -39,7 +39,7 @@ namespace CGWH.Core.Input
         #region DLL-Import`s
 
         [DllImport("user32.dll", CharSet = CharSet.Auto, SetLastError = true)]
-        private static extern IntPtr SetWindowsHookEx(int idHook, LowLevelKeyboardProc lpfn, IntPtr hMod, uint dwThreadId);
+        private static extern IntPtr SetWindowsHookEx(int idHook, Handle lpfn, IntPtr hMod, uint dwThreadId);
 
 
         [DllImport("user32.dll", CharSet = CharSet.Auto, SetLastError = true)]
@@ -58,35 +58,18 @@ namespace CGWH.Core.Input
 
 
 
-        internal void HookKeyboard()
-        {
-            hookId = setHook(keyboardProc);
-        }
+        internal void Hook() => hookId = setHook(handle);
 
-        internal void UnHookKeyboard()
-        {
-            UnhookWindowsHookEx(hookId);
-        }
+        internal void UnHook() => UnhookWindowsHookEx(hookId);
 
 
 
-        private IntPtr setHook(LowLevelKeyboardProc proc)
-        {
-            using (Process curProcess = Process.GetCurrentProcess())
-            using (ProcessModule curModule = curProcess.MainModule)
-            {
-                return SetWindowsHookEx(WH_KEYBOARD_LL, proc, GetModuleHandle(curModule.ModuleName), 0);
-            }
-        }
+        private IntPtr setHook(Handle handle) => SetWindowsHookEx(WH_KEYBOARD_LL, handle, GetModuleHandle(Process.GetCurrentProcess().MainModule.ModuleName), 0);
 
         private IntPtr hookCallback(int nCode, IntPtr wParam, IntPtr lParam)
         {
             if (nCode >= 0 && wParam == (IntPtr)WM_KEYDOWN || wParam == (IntPtr)WM_SYSKEYDOWN)
-            {
-                int vkCode = Marshal.ReadInt32(lParam);
-
-                OnKeyPressed?.Invoke(KeyInterop.KeyFromVirtualKey(vkCode));
-            }
+                OnKeyPressed?.Invoke(KeyInterop.KeyFromVirtualKey(Marshal.ReadInt32(lParam)));
 
             return CallNextHookEx(hookId, nCode, wParam, lParam);
         }

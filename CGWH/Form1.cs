@@ -15,7 +15,7 @@ namespace CGWH
 
 
 
-        internal readonly LowLevelKeyboardListener Listener;
+        internal readonly SimpleKeyboardListener Listener;
 
 
 
@@ -27,7 +27,7 @@ namespace CGWH
 
             FormClosed += onMainUnload;
 
-            Listener = new LowLevelKeyboardListener();
+            Listener = new SimpleKeyboardListener();
 
 
 

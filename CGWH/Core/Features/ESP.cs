@@ -43,7 +43,7 @@ namespace CGWH.Core.Functions
                         {
                             int playerTeamNum = Cheat.Memory.Read<int>(Player.Local + Offsets.m_iTeamNum);
 
-                            for (int i = 0; i < 10; i++)
+                            for (int i = 0; i < 64; i++)
                             {
                                 int enemyNum = Cheat.Memory.Read<int>(Cheat.ModuleAddress + Offsets.dwEntityList + i * 16);
                                 int enemyTeamNum = Cheat.Memory.Read<int>(enemyNum + Offsets.m_iTeamNum);

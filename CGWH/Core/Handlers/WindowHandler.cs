@@ -19,14 +19,11 @@ namespace CGWH.Core.Handlers
         {
             byte value = byte.MaxValue;
 
-            StringBuilder Buff = new StringBuilder(value);
+            StringBuilder builder = new StringBuilder(value);
 
             IntPtr handle = GetForegroundWindow();
 
-            if (GetWindowText(handle, Buff, value) > 0)
-            {
-                return Buff.ToString();
-            }
+            if (GetWindowText(handle, builder, value) > 0) return builder.ToString();
 
             return null;
         }
