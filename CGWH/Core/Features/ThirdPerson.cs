@@ -9,16 +9,11 @@ namespace CGWH.Core.Functions
 
 
 
-        internal ThirdPerson(bool enabled)
-        {
-            this.enabled = enabled;
-        }
+        internal ThirdPerson(bool enabled) => this.enabled = enabled;
 
 
 
         protected override void OnEnable() => Main.Instance.Listener.OnKeyPressed += onKeyDown;
-
-
 
         protected override void OnDisable() => Main.Instance.Listener.OnKeyPressed -= onKeyDown;
 

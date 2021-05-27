@@ -31,12 +31,10 @@ namespace CGWH.Core.Input
         {
             handle = hookCallback;
 
-            Hook();
+            hook();
         }
 
 
-
-        #region DLL-Import`s
 
         [DllImport("user32.dll", CharSet = CharSet.Auto, SetLastError = true)]
         private static extern IntPtr SetWindowsHookEx(int idHook, Handle lpfn, IntPtr hMod, uint dwThreadId);
@@ -54,13 +52,11 @@ namespace CGWH.Core.Input
         [DllImport("kernel32.dll", CharSet = CharSet.Auto, SetLastError = true)]
         private static extern IntPtr GetModuleHandle(string lpModuleName);
 
-        #endregion
 
 
+        private void hook() => hookId = setHook(handle);
 
-        internal void Hook() => hookId = setHook(handle);
-
-        internal void UnHook() => UnhookWindowsHookEx(hookId);
+        private void unHook() => UnhookWindowsHookEx(hookId);
 
 
 

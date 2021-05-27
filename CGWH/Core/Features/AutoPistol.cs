@@ -9,16 +9,11 @@ namespace CGWH.Core.Features
 
 
 
-        internal AutoPistol(bool enabled)
-        {
-            this.enabled = enabled;
-        }
+        internal AutoPistol(bool enabled) => this.enabled = enabled;
 
 
 
         protected override void OnEnable() => enable();
-
-
 
         protected override void OnDisable() { }
 

@@ -10,10 +10,7 @@ namespace CGWH.Core.Features
 
 
 
-        internal Radar(bool enabled)
-        {
-            this.enabled = enabled;
-        }
+        internal Radar(bool enabled) => this.enabled = enabled;
 
 
             
@@ -25,8 +22,6 @@ namespace CGWH.Core.Features
 
             enable();
         }
-
-        
 
         protected override void OnDisable() 
         {

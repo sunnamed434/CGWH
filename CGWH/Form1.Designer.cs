@@ -43,7 +43,7 @@ namespace CGWH
             this.Name = "Main";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "CGWH";
-            this.Load += new System.EventHandler(this.MainLoad);
+            this.Load += new System.EventHandler(this.onApplicationLoading);
             this.ResumeLayout(false);
 
         }

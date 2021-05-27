@@ -28,22 +28,8 @@ namespace CGWH.Core.Handlers
             return null;
         }
 
-        internal static bool TryGetCSGOWindow()
-        {
-            string result = GetActiveWindowTitle();
+        internal static bool TryGetCSGOWindow() => GetActiveWindowTitle()?.Equals(Information.PROCESS_FULLNAME) != null;
 
-            if (result != null && result.Equals(Information.PROCESS_FULLNAME)) return true;
-
-            return false;
-        }
-
-        internal static bool TryGetActiveWindowByName(string name)
-        {
-            string result = string.Empty;
-
-            if ((result = GetActiveWindowTitle()) != null && result.Equals(name)) return true;
-
-            return false;
-        }
+        internal static bool TryGetActiveWindowByName(string name) => GetActiveWindowTitle()?.Equals(name) != null;
     }
 }

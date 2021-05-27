@@ -21,6 +21,12 @@ namespace CGWH.Core
 
 
 
+		internal static readonly float DefaultFlashAlpha = 255;
+
+		internal static readonly int DefaultFov = 90;
+
+
+
 		#region - Weapon -
 
 		internal static int HandsItemId
@@ -69,7 +75,7 @@ namespace CGWH.Core
 
 		internal static void SetFlashAlpha(float value) => Cheat.Memory.Write<float>(Local + Offsets.m_flFlashMaxAlpha, value);
 
-		internal static void SetFlashAlphaByDefault() => Cheat.Memory.Write<float>(Local + Offsets.m_flFlashMaxAlpha, 255f);
+		internal static void SetFlashAlphaByDefault() => Cheat.Memory.Write<float>(Local + Offsets.m_flFlashMaxAlpha, DefaultFlashAlpha);
 
 		internal static void SetThirdPersonView() => Cheat.Memory.Write<int>(Offsets.m_iObserverMode + Local, 1);
 
@@ -77,7 +83,7 @@ namespace CGWH.Core
 
 		internal static void SetFov(int value) => Cheat.Memory.Write<int>(Local + Offsets.m_iDefaultFOV, value);
 
-		internal static void SetFovByDefault() => Cheat.Memory.Write<int>(Local + Offsets.m_iDefaultFOV, 90);
+		internal static void SetFovByDefault() => Cheat.Memory.Write<int>(Local + Offsets.m_iDefaultFOV, DefaultFov);
 
 		internal static bool TryGetCrosshairEnemyTrigger(out CrosshairParameters parameters)
 		{

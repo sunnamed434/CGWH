@@ -12,10 +12,7 @@ namespace CGWH.Core.Functions
 
 
 
-        internal AutoBunnyhop(bool enabled)
-        {
-            this.enabled = enabled;
-        }
+        internal AutoBunnyhop(bool enabled) => this.enabled = enabled;
 
 
 
@@ -27,8 +24,6 @@ namespace CGWH.Core.Functions
 
             enable();
         }
-
-       
 
         protected override void OnDisable() => Main.Instance.Listener.OnKeyPressed -= onKeyDown;
 
@@ -58,8 +53,6 @@ namespace CGWH.Core.Functions
 
             task.Start();
         }
-
-
 
         private void onKeyDown(Key key)
         {

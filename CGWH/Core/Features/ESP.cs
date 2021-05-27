@@ -11,10 +11,7 @@ namespace CGWH.Core.Functions
 
 
 
-        internal ESP(bool enabled)
-        {
-            this.enabled = enabled;
-        }
+        internal ESP(bool enabled) => this.enabled = enabled;
 
 
 
@@ -24,8 +21,6 @@ namespace CGWH.Core.Functions
 
             enable();
         }
-
-       
 
         protected override void OnDisable() => Main.Instance.Listener.OnKeyPressed -= onKeyDown;
 
@@ -65,8 +60,6 @@ namespace CGWH.Core.Functions
 
             task.Start();
         }
-
-
 
         private void drawEnemy(int index, int red, int green, int blue, int alpha)
         {

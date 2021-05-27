@@ -10,8 +10,6 @@ namespace CGWH.Core.Functions
     {
         protected override void OnEnable() => enable();
 
-
-
         protected override void OnDisable() { }
 
 

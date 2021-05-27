@@ -52,22 +52,20 @@ namespace CGWH.Core
             return false;
         }
 
-
-
         internal static bool TryCheckValidVersion(out string content)
         {
             string steamPath = Registry.GetValue("HKEY_LOCAL_MACHINE\\SOFTWARE\\Wow6432Node\\Valve\\Steam", "InstallPath", null).ToString();
 
-            string infPath = steamPath + "\\steamapps\\common\\Counter-Strike Global Offensive\\csgo\\steam.inf";
+            string infoPath = steamPath + "\\steamapps\\common\\Counter-Strike Global Offensive\\csgo\\steam.inf";
 
             Utilities.Debug.Log(">> IsGetProcess()");
-            Utilities.Debug.Log($"[DEBUG:1] {infPath}");
+            Utilities.Debug.Log($"[DEBUG:1] {infoPath}");
 
             content = string.Empty;
 
-            if (File.Exists(infPath))
+            if (File.Exists(infoPath))
             {
-                string infText = File.ReadAllText(infPath);
+                string infText = File.ReadAllText(infoPath);
                 content = infText;
                 if (infText.Contains(string.Concat(Information.VERSION_DATE_TITLE, Information.VERSION_DATE)) && infText.Contains(string.Concat(Information.VERSION_TIME_TITLE, Information.VERSION_TIME)))
                     return true;

@@ -25,11 +25,9 @@ namespace CGWH
 
             Instance = this;
 
-            FormClosed += onMainUnload;
+            FormClosed += onApplicationUnloading;
 
             Listener = new SimpleKeyboardListener();
-
-
 
             if (!Cheat.TryCheckValidVersion(out string content))
             {
@@ -42,8 +40,6 @@ namespace CGWH
                 MessageBox.Show("Please start game!", "CSGO Not found", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
-
-
 
             new ESP(true);
 
@@ -62,24 +58,20 @@ namespace CGWH
 
 
 
-        #region Load/Unload
-
-        private void MainLoad(object sender, EventArgs e)
+        private void onApplicationLoading(object sender, EventArgs e)
         {
             ApplicationHandler.Load?.Invoke();
 
             FormBorderStyle = FormBorderStyle.FixedToolWindow;
         }
 
-        private void onMainUnload(object sender, FormClosedEventArgs e)
+        private void onApplicationUnloading(object sender, FormClosedEventArgs e)
         {
             ApplicationHandler.Unload?.Invoke();
 
-            FormClosed -= onMainUnload;
+            FormClosed -= onApplicationUnloading;
 
             Process.GetCurrentProcess().Kill();
         }
-
-        #endregion
     }
 }
