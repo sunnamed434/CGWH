@@ -94,8 +94,8 @@
     <Compile Include="Core\Handlers\MouseHandler.cs" />
     <Compile Include="Core\Handlers\WindowHandler.cs" />
     <Compile Include="Core\Information.cs" />
+    <Compile Include="Core\Listeners\SimpleKeyboardListener.cs" />
     <Compile Include="Core\Parameters\CrosshairParameters.cs" />
-    <Compile Include="Core\KeyboardListener\LowLevelKeyboardListener.cs" />
     <Compile Include="Core\Player.cs" />
     <Compile Include="Core\Offsets.cs" />
     <Compile Include="Core\Utilities\Debug.cs" />

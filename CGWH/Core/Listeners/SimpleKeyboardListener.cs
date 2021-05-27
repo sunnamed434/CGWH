@@ -3,7 +3,7 @@ using System.Diagnostics;
 using System.Runtime.InteropServices;
 using System.Windows.Input;
 
-namespace CGWH.Core.Input
+namespace CGWH.Core.Listeners
 {
     public class SimpleKeyboardListener
     {
